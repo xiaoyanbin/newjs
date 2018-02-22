@@ -1,0 +1,79 @@
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" type="text/css" href="">
+	<script type="text/javascript" src="DN.js"></script>
+
+</head>
+<body>
+	<div id="app">
+		<input v-model="text" />
+		{{text}}
+	</div>
+	<script type="text/javascript">
+
+//new 是主要用来
+
+     // 
+     function DN(name,age){
+     	this.name = name;
+     	this.age = age;
+     	this.salary = '30k';
+         // return {
+         //      age: age
+         // }
+     }
+     DN.prototype.ablility = 100;
+     DN.prototype.sayYourName = function(){
+     	 console.log("1 am"+this.name);
+     }
+     var person = new DN('张三','18')
+       console.log($);
+/*     person.sayYourName();
+     function Parent(){
+          this.names =['Derry','aaa']
+     }
+     
+     function Child(){
+          Parent.call(this);
+
+     }
+
+     var child1 =new Child();
+     child1.names.push('小酌')
+     console.log(child1.names);
+     var child2 = new Child();
+     console.log(child2.names);*/
+     //person.__proto__ = DN.prototype;
+
+     function DNew (){
+        //  var obj = {};  //
+          //取出一个参数 Constructor ==DN 
+          Constructor = [].shift.call(arguments); 
+          var obj = Object.create(Constructor.prototype);
+         //  console.log(arguments,[].shift.call(arguments));
+          obj.__proto__ = Constructor.prototype
+          // 返回到原型链上
+          var result = Constructor.apply(obj,arguments);
+          return  typeof result === 'object' ? result || obj : obj;
+     }
+     
+
+     var person1 = $.DNew(DN,"张三","18");
+     console.log(person1.name);
+     console.log(person1.salary);
+     console.log(person1.ablility);
+     person1.sayYourName();
+  
+
+     // dn 是一个function 一定要考虑它可以是有返回值的
+     // dn 构造返回对象时 返回什么就有什么  原型链的属性就没有了
+     // DN 返回的支付串没有影响
+     // Object.create() //创建对象
+
+	</script>
+	
+
+
+</body>
+</html>
